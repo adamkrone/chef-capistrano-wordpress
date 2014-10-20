@@ -8,10 +8,10 @@
 #
 
 include_recipe 'apt::default'
-include_recipe 'capistrano-wordpress::environment'
-include_recipe 'capistrano-wordpress::user'
-include_recipe 'capistrano-wordpress::ssh'
-include_recipe 'nodejs::default'
-include_recipe 'capistrano-wordpress::chown'
-include_recipe 'capistrano-wordpress::mysql-server'
-include_recipe 'capistrano-wordpress::database-mysql'
+#include_recipe 'capistrano-base::environment'
+include_recipe 'capistrano-base::user'
+include_recipe 'capistrano-base::ssh'
+#include_recipe 'capistrano-base::nodejs'
+#include_recipe 'capistrano-base::chown'
+include_recipe 'capistrano-base::mysql-server'
+include_recipe 'capistrano-base::database-mysql'
