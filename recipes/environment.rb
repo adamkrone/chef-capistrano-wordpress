@@ -13,8 +13,8 @@ vars = {
   DB_PASSWORD: node['capistrano_base']['db']['user_password'],
   DB_HOST: node['capistrano_base']['db']['host'],
   WP_ENV: node['capistrano_wordpress']['environment'],
-  WP_HOME: node['capistrano_wordpress']['wp']['home'],
-  WP_SITEURL: node['capistrano_wordpress']['wp']['siteurl']
+  WP_HOME: node['capistrano_wordpress']['home'],
+  WP_SITEURL: node['capistrano_wordpress']['siteurl']
 }
 
 node.normal['capistrano_base']['env_variables'] = vars
