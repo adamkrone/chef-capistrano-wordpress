@@ -1,4 +1,10 @@
-inherit_from: .rubocop_todo.yml
 AllCops:
   Exclude:
     - 'metadata.rb'
+
+Metrics/LineLength:
+  Max: 100
+
+Documentation:
+  Enabled:
+    false

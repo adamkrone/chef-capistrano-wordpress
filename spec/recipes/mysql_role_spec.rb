@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'capistrano-wordpress::mysql-role' do
+describe 'capistrano-wordpress::mysql_role' do
   let(:chef_run) do
     ChefSpec::SoloRunner.new do |node|
       node.set['mysql']['server_debian_password'] = 'password'
@@ -10,7 +10,8 @@ describe 'capistrano-wordpress::mysql-role' do
   end
 
   before do
-    stub_command("\"/usr/bin/mysql\" -u root -e 'show databases;'").and_return(true)
+    stub_command("\"/usr/bin/mysql\" -u root -e 'show databases;'")
+      .and_return(true)
   end
 
   it 'should include the apt::default recipe' do

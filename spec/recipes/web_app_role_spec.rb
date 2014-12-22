@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'capistrano-wordpress::web-app-role' do
+describe 'capistrano-wordpress::web_app_role' do
   let(:chef_run) do
     ChefSpec::SoloRunner.new do |node|
       node.set['mysql']['server_debian_password'] = 'password'
@@ -26,24 +26,8 @@ describe 'capistrano-wordpress::web-app-role' do
     expect(chef_run).to include_recipe('capistrano-base::ssh')
   end
 
-  it 'should include the capistrano-base::nodejs recipe' do
-    expect(chef_run).to include_recipe('capistrano-base::nodejs')
-  end
-
-  it 'should include the capistrano-wordpress::php recipe' do
-    expect(chef_run).to include_recipe('capistrano-wordpress::php')
-  end
-
-  it 'should include the capistrano-wordpress::composer recipe' do
-    expect(chef_run).to include_recipe('capistrano-wordpress::composer')
-  end
-
-  it 'should include the capistrano-wordpress::apache2 recipe' do
-    expect(chef_run).to include_recipe('capistrano-wordpress::apache2')
-  end
-
-  it 'should include the capistrano-base::app recipe' do
-    expect(chef_run).to include_recipe('capistrano-base::app')
+  it 'should include the capistrano-wordpress::app recipe' do
+    expect(chef_run).to include_recipe('capistrano-wordpress::app')
   end
 
   it 'should include the capistrano-wordpress::environment recipe' do
