@@ -3,6 +3,7 @@ require 'chef/provider/lwrp_base'
 class Chef
   class Provider
     class CapistranoWordpressApp < Chef::Provider::LWRPBase
+      include Chef::DSL::IncludeRecipe
       use_inline_resources if defined?(use_inline_resources)
 
       def whyrun_supported?
@@ -10,22 +11,25 @@ class Chef
       end
 
       action :create do
+        node.normal['apache']['docroot_dir'] = '/var/www'
+        node.normal['apache']['user'] = new_resource.deployment_user
+        node.normal['apache']['group'] = new_resource.deployment_group
+        node.normal['apache']['mpm'] = 'prefork'
+        include_recipe 'apache2::default'
+
         capistrano_app new_resource.name do
           template new_resource.template
           deploy_root new_resource.deploy_root
           docroot new_resource.docroot
           deployment_user new_resource.deployment_user
           deployment_group new_resource.deployment_group
-          apache_mpm 'prefork'
         end
 
-        recipe_eval do
-          run_context.include_recipe 'php::default'
-          run_context.include_recipe 'php::module_mysql'
-          run_context.include_recipe 'composer::default'
-          run_context.include_recipe 'apache2::mod_php5'
-          run_context.include_recipe 'apache2::mod_rewrite'
-        end
+        include_recipe 'php::default'
+        include_recipe 'php::module_mysql'
+        include_recipe 'composer::default'
+        include_recipe 'apache2::mod_php5'
+        include_recipe 'apache2::mod_rewrite'
       end
 
       action :delete do
