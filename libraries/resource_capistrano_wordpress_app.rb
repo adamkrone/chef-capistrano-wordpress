@@ -8,8 +8,8 @@ class Chef
       default_action :create
 
       attribute :app_name, kind_of: String, name_attribute: true
-      attribute :cookbook, kind_of: String, default: nil
-      attribute :template, kind_of: String, default: nil
+      attribute :cookbook, kind_of: String, default: 'capistrano-wordpress'
+      attribute :template, kind_of: String, default: 'app.conf.erb'
       attribute :deploy_root, kind_of: String, required: true
       attribute :docroot, kind_of: String, required: true
       attribute :deployment_user, kind_of: String, default: 'deploy'

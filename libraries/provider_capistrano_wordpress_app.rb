@@ -19,6 +19,7 @@ class Chef
 
         capistrano_app new_resource.name do
           template new_resource.template
+          cookbook new_resource.cookbook
           deploy_root new_resource.deploy_root
           docroot new_resource.docroot
           deployment_user new_resource.deployment_user
