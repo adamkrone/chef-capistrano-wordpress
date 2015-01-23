@@ -15,6 +15,12 @@ class Chef
         node.normal['apache']['user'] = new_resource.deployment_user
         node.normal['apache']['group'] = new_resource.deployment_group
         node.normal['apache']['mpm'] = 'prefork'
+        node.normal['apache']['prefork']['startservers'] = 5
+        node.normal['apache']['prefork']['minspareservers'] = 5
+        node.normal['apache']['prefork']['maxspareservers'] = 10
+        node.normal['apache']['prefork']['serverlimit'] = 30
+        node.normal['apache']['prefork']['maxrequestworkers'] = 30
+        node.normal['apache']['prefork']['maxconnectionsperchild'] = 2_000
         include_recipe 'apache2::default'
 
         capistrano_app new_resource.name do
