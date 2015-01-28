@@ -30,6 +30,8 @@ class Chef
           docroot new_resource.docroot
           deployment_user new_resource.deployment_user
           deployment_group new_resource.deployment_group
+          server_name new_resource.server_name if new_resource.server_name
+          server_aliases new_resource.server_aliases if new_resource.server_aliases
         end
 
         include_recipe 'php::default'
