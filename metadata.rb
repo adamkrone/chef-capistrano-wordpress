@@ -1,6 +1,6 @@
 name             'capistrano-wordpress'
 maintainer       'Adam Krone'
-maintainer_email 'krone.adam@gmail.com'
+maintainer_email 'adam.krone@thirdwavellc.com'
 license          'Apache v2.0'
 description      'Installs/Configures capistrano-wordpress'
 long_description 'Installs/Configures capistrano-wordpress'
