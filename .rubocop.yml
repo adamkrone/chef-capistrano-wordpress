@@ -1,6 +1,7 @@
 AllCops:
   Exclude:
     - 'metadata.rb'
+    - '.kitchen/*'
 
 Metrics/LineLength:
   Max: 100

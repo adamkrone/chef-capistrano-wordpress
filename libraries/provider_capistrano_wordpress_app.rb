@@ -59,6 +59,13 @@ class Chef
         include_recipe 'composer::default'
         include_recipe 'apache2::mod_php5'
         include_recipe 'apache2::mod_rewrite'
+
+        template '/etc/php5/apache2/php.ini' do
+          source node['php']['ini']['template']
+          cookbook node['php']['ini']['cookbook']
+          variables(directives: node['php']['directives'])
+          notifies :restart, 'service[apache2]', :delayed
+        end
       end
 
       action :delete do
