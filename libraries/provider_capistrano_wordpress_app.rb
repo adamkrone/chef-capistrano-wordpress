@@ -60,6 +60,8 @@ class Chef
         include_recipe 'apache2::mod_php5'
         include_recipe 'apache2::mod_rewrite'
 
+        service 'apache2'
+
         template '/etc/php5/apache2/php.ini' do
           source node['php']['ini']['template']
           cookbook node['php']['ini']['cookbook']
