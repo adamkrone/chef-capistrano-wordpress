@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: capistrano-wordpress
-# Recipe:: default
+# Cookbook Name:: capistrano-wordpress-test
+# Recipe:: environment
 #
 # Copyright 2014 Adam Krone <adam.krone@thirdwavellc.com>
 # Copyright 2014 Thirdwave, LLC
@@ -17,3 +17,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+env_vars = {
+  DB_NAME: 'my_app_production',
+  DB_USER: 'my-app',
+  DB_PASSWORD: 'my-app-password',
+  DB_HOST: 'localhost',
+  WP_ENV: 'production',
+  WP_HOME: 'http://my-app.com',
+  WP_SITEURL: 'http://my-app.com/wp'
+}
+
+capistrano_shared_file '.env' do
+  app_root '/var/www/my-app'
+  template '.env.erb'
+  variables(environment_variables: env_vars)
+end

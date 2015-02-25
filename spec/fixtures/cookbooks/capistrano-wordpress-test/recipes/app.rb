@@ -1,6 +1,6 @@
 #
-# Cookbook:: capistrano-wordpress
-# Attributes:: default
+# Cookbook Name:: capistrano-wordpress-test
+# Recipe:: app
 #
 # Copyright 2014 Adam Krone <adam.krone@thirdwavellc.com>
 # Copyright 2014 Thirdwave, LLC
@@ -18,7 +18,6 @@
 # limitations under the License.
 #
 
-default['capistrano_base']['app_docroot'] = '/var/www/current/web'
-
-default['capistrano_wordpress']['home'] = 'http://localhost'
-default['capistrano_wordpress']['siteurl'] = 'http://localhost/wp'
+capistrano_wordpress_app 'my-app' do
+  server_name 'my-app.com'
+end

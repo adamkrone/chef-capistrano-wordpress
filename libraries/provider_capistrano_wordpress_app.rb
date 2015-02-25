@@ -31,26 +31,15 @@ class Chef
       end
 
       action :create do
-        node.normal['apache']['docroot_dir'] = '/var/www'
-        node.normal['apache']['user'] = new_resource.deployment_user
-        node.normal['apache']['group'] = new_resource.deployment_group
         node.normal['apache']['mpm'] = 'prefork'
-        node.normal['apache']['prefork']['startservers'] = 5
-        node.normal['apache']['prefork']['minspareservers'] = 5
-        node.normal['apache']['prefork']['maxspareservers'] = 10
-        node.normal['apache']['prefork']['serverlimit'] = 30
-        node.normal['apache']['prefork']['maxrequestworkers'] = 30
-        node.normal['apache']['prefork']['maxconnectionsperchild'] = 2_000
-        include_recipe 'apache2::default'
 
         capistrano_app new_resource.name do
-          template new_resource.template
           cookbook new_resource.cookbook
+          template new_resource.template
           deploy_root new_resource.deploy_root
-          docroot new_resource.docroot
           deployment_user new_resource.deployment_user
           deployment_group new_resource.deployment_group
-          server_name new_resource.server_name if new_resource.server_name
+          server_name new_resource.server_name
           server_aliases new_resource.server_aliases if new_resource.server_aliases
         end
 
@@ -73,7 +62,7 @@ class Chef
       action :delete do
         capistrano_app new_resource.name do
           deploy_root new_resource.deploy_root
-          docroot new_resource.docroot
+          server_name new_resource.server_name
           action :delete
         end
       end

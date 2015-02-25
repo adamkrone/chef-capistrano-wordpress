@@ -1,0 +1,11 @@
+name             'capistrano-wordpress-test'
+maintainer       'Adam Krone'
+maintainer_email 'adam.krone@thirdwavellc.com'
+license          'Apache v2.0'
+description      'Installs/Configures capistrano-wordpress-test'
+long_description 'Installs/Configures capistrano-wordpress-test'
+version          '0.1.0'
+
+depends 'apt'
+depends 'capistrano-base-test'
+depends 'capistrano-wordpress'

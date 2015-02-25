@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: capistrano-wordpress
-# Recipe:: environment
+# Cookbook Name:: capistrano-wordpress-test
+# Recipe:: all-in-one-role
 #
 # Copyright 2014 Adam Krone <adam.krone@thirdwavellc.com>
 # Copyright 2014 Thirdwave, LLC
@@ -18,16 +18,5 @@
 # limitations under the License.
 #
 
-vars = {
-  DB_NAME: "#{node['capistrano_base']['db']['name']}_#{node['capistrano_base']['environment']}",
-  DB_USER: node['capistrano_base']['db']['user'],
-  DB_PASSWORD: node['capistrano_base']['db']['user_password'],
-  DB_HOST: node['capistrano_base']['db']['host'],
-  WP_ENV: node['capistrano_wordpress']['environment'],
-  WP_HOME: node['capistrano_wordpress']['home'],
-  WP_SITEURL: node['capistrano_wordpress']['siteurl']
-}
-
-node.normal['capistrano_base']['env_variables'] = vars
-
-include_recipe 'capistrano-base::environment'
+include_recipe 'capistrano-wordpress-test::web_app_role'
+include_recipe 'capistrano-wordpress-test::mysql_role'

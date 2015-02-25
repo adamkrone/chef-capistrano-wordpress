@@ -29,13 +29,12 @@ class Chef
 
       attribute :app_name, kind_of: String, name_attribute: true
       attribute :cookbook, kind_of: String, default: 'capistrano-wordpress'
-      attribute :template, kind_of: String, default: 'app.conf.erb'
-      attribute :deploy_root, kind_of: String, required: true
-      attribute :docroot, kind_of: String, required: true
+      attribute :template, kind_of: String, default: 'web_app.conf.erb'
+      attribute :deploy_root, kind_of: String, default: '/var/www'
       attribute :deployment_user, kind_of: String, default: 'deploy'
       attribute :deployment_group, kind_of: String, default: 'deploy'
-      attribute :server_name, kind_of: String, default: nil
-      attribute :server_aliases, kind_of: Array, default: []
+      attribute :server_name, kind_of: String, required: true
+      attribute :server_aliases, kind_of: Array, default: nil
     end
   end
 end

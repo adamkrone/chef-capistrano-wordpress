@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: capistrano-wordpress
-# Recipe:: app
+# Cookbook Name:: capistrano-wordpress-test
+# Recipe:: mysql-role
 #
 # Copyright 2014 Adam Krone <adam.krone@thirdwavellc.com>
 # Copyright 2014 Thirdwave, LLC
@@ -18,10 +18,8 @@
 # limitations under the License.
 #
 
-capistrano_wordpress_app 'bedrock' do
-  template node['capistrano_base']['app_template']
-  deploy_root node['capistrano_base']['app_deploy_root']
-  docroot node['capistrano_base']['app_docroot']
-  deployment_user node['capistrano_base']['deployment_user']
-  deployment_group node['capistrano_base']['deployment_group']
-end
+include_recipe 'apt::default'
+include_recipe 'capistrano-base-test::user'
+include_recipe 'capistrano-base-test::ssh'
+include_recipe 'capistrano-base-test::mysql_server'
+include_recipe 'capistrano-base-test::database_mysql'

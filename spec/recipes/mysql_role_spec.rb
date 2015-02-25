@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe 'capistrano-wordpress::mysql_role' do
+describe 'capistrano-wordpress-test::mysql_role' do
   let(:chef_run) do
     ChefSpec::SoloRunner.new do |node|
-      node.set['mysql']['server_debian_password'] = 'password'
-      node.set['mysql']['server_root_password'] = 'password'
-      node.set['mysql']['server_repl_password'] = 'password'
+      node.set['mysql']['server_debian_password'] = 'my-root-password'
+      node.set['mysql']['server_root_password'] = 'my-root-password'
+      node.set['mysql']['server_repl_password'] = 'my-root-password'
     end.converge(described_recipe)
   end
 
@@ -18,19 +18,19 @@ describe 'capistrano-wordpress::mysql_role' do
     expect(chef_run).to include_recipe('apt::default')
   end
 
-  it 'should include the capistrano-base::user recipe' do
-    expect(chef_run).to include_recipe('capistrano-base::user')
+  it 'should include the capistrano-base-test::user recipe' do
+    expect(chef_run).to include_recipe('capistrano-base-test::user')
   end
 
-  it 'should include the capistrano-base::ssh recipe' do
-    expect(chef_run).to include_recipe('capistrano-base::ssh')
+  it 'should include the capistrano-base-test::ssh recipe' do
+    expect(chef_run).to include_recipe('capistrano-base-test::ssh')
   end
 
-  it 'should include the capistrano-base::mysql_server recipe' do
-    expect(chef_run).to include_recipe('capistrano-base::mysql_server')
+  it 'should include the capistrano-base-test::mysql_server recipe' do
+    expect(chef_run).to include_recipe('capistrano-base-test::mysql_server')
   end
 
-  it 'should include the capistrano-base::database_mysql recipe' do
-    expect(chef_run).to include_recipe('capistrano-base::database_mysql')
+  it 'should include the capistrano-base-test::database_mysql recipe' do
+    expect(chef_run).to include_recipe('capistrano-base-test::database_mysql')
   end
 end

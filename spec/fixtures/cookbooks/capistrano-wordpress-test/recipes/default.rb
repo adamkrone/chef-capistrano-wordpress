@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: capistrano-wordpress
-# Recipe:: web-app-role
+# Cookbook Name:: capistrano-wordpress-test
+# Recipe:: default
 #
 # Copyright 2014 Adam Krone <adam.krone@thirdwavellc.com>
 # Copyright 2014 Thirdwave, LLC
@@ -17,9 +17,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-include_recipe 'apt::default'
-include_recipe 'capistrano-base::user'
-include_recipe 'capistrano-base::ssh'
-include_recipe 'capistrano-wordpress::app'
-include_recipe 'capistrano-wordpress::environment'

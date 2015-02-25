@@ -13,5 +13,5 @@ suites:
   - name: all-in-one
     run_list:
       - recipe[chef-solo-search::default]
-      - recipe[capistrano-wordpress::all-in-one-role]
+      - recipe[capistrano-wordpress-test::all-in-one-role]
     attributes:
