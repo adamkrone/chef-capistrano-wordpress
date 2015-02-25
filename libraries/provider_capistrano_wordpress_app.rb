@@ -31,7 +31,12 @@ class Chef
       end
 
       action :create do
+        node.normal['apache']['docroot_dir'] = new_resource.deploy_root
+        node.normal['apache']['user'] = new_resource.deployment_user
+        node.normal['apache']['group'] = new_resource.deployment_group
         node.normal['apache']['mpm'] = 'prefork'
+
+        include_recipe 'apache2::default'
 
         capistrano_app new_resource.name do
           cookbook new_resource.cookbook
