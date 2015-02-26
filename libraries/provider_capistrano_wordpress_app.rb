@@ -42,6 +42,7 @@ class Chef
           cookbook new_resource.cookbook
           template new_resource.template
           deploy_root new_resource.deploy_root
+          web_root new_resource.web_root if new_resource.web_root
           deployment_user new_resource.deployment_user
           deployment_group new_resource.deployment_group
           server_name new_resource.server_name

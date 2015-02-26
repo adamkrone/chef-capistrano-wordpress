@@ -27,16 +27,17 @@ LWRPs provided:
 
 **Attributes:**
 
-| Name						 | Description																		| Type	 | Required | Default								 |
-| ---------------- | ---------------------------------------------- | ------ | -------- | ---------------------- |
-| app_name				 | Name of the application												| String | true			| N/A										 |
-| cookbook				 | Cookbook that contains the web config template | String | false		| 'capistrano-wordpress' |
-| template				 | Name of the web config template.								| String | false		| 'web_app.conf.erb'		 |
-| deploy_root			 | Directory where all applications are deployed	| String | false		| '/var/www'						 |
-| deployment_user  | User that deploys the application.							| String | false		| 'deploy'							 |
-| deployment_group | Group that deploys the application.						| String | false		| 'deploy'							 |
-| server_name			 | ServerName in Apache config.										| String | true			| N/A										 |
-| server_aliases	 | List of ServerAlias in Apache config.					| String | false		| nil										 |
+| Name             | Description                                                      | Type   | Required | Default                |
+| ---------------- | ---------------------------------------------------------------- | ------ | -------- | ---------------------- |
+| app_name         | Name of the application                                          | String | true     | N/A                    |
+| cookbook         | Cookbook that contains the web config template                   | String | false    | 'capistrano-wordpress' |
+| template         | Name of the web config template.                                 | String | false    | 'web_app.conf.erb'     |
+| deploy_root      | Directory where all applications are deployed                    | String | false    | '/var/www'             |
+| web_root         | Directory where app is served (relative to the root of the repo) | String | false    | nil                    |
+| deployment_user  | User that deploys the application.                               | String | false    | 'deploy'               |
+| deployment_group | Group that deploys the application.                              | String | false    | 'deploy'               |
+| server_name      | ServerName in Apache config.                                     | String | true     | N/A                    |
+| server_aliases   | List of ServerAlias in Apache config.                            | String | false    | nil                    |
 
 
 **Example:**
