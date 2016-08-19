@@ -25,6 +25,7 @@ class Chef
     class CapistranoWordpressApp < Chef::Provider::LWRPBase
       include Chef::DSL::IncludeRecipe
       use_inline_resources if defined?(use_inline_resources)
+      provides :capistrano_wordpress_app
 
       def whyrun_supported?
         true
