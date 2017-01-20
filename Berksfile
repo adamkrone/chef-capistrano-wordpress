@@ -8,7 +8,7 @@ cookbook 'users'
 cookbook 'sudo'
 cookbook 'ssh-hardening', github: 'TelekomLabs/chef-ssh-hardening', tag: 'v1.0.2'
 cookbook 'nodejs'
-cookbook 'php-fpm'
+cookbook 'php'
 cookbook 'composer'
 cookbook 'capistrano-base', github: 'thirdwavellc/chef-capistrano-base'
 
