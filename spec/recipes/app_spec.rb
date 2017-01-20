@@ -41,4 +41,9 @@ describe 'capistrano-wordpress-test::app' do
   it 'should create template[/etc/php5/apache2/php.ini]' do
     expect(chef_run).to create_template('/etc/php5/apache2/php.ini')
   end
+
+  it 'should enable/start service[apache2]' do
+    expect(chef_run).to enable_service('apache2')
+    expect(chef_run).to start_service('apache2')
+  end
 end

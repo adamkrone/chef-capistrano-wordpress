@@ -1,5 +1,6 @@
 AllCops:
   Exclude:
+    - 'Gemfile'
     - 'metadata.rb'
     - '.kitchen/*'
     - 'spec/fixtures/**/*'
@@ -7,6 +8,9 @@ AllCops:
 
 Metrics/LineLength:
   Max: 100
+
+Metrics/BlockLength:
+  Max: 50
 
 Documentation:
   Enabled:
