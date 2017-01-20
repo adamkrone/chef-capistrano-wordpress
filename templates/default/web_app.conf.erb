@@ -30,7 +30,11 @@
 
   LogLevel info
   ErrorLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-error.log
-  CustomLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-access.log combined
+  LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+  LogFormat "%{X-Forwarded-For}i %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" proxy
+  SetEnvIf X-Forwarded-For "^.*\..*\..*\..*" forwarded
+  CustomLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-access.log combined env=!forwarded
+  CustomLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-access.log proxy env=forwarded
 
   <% if @params[:directory_index] -%>
   DirectoryIndex <%= [@params[:directory_index]].flatten.join " " %>
