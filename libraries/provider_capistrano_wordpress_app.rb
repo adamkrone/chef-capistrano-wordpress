@@ -38,6 +38,11 @@ class Chef
         node.normal['apache']['mpm'] = 'prefork'
 
         include_recipe 'apache2::default'
+        include_recipe 'php::default'
+        include_recipe 'php::module_mysql'
+        include_recipe 'composer::default'
+        include_recipe 'apache2::mod_php'
+        include_recipe 'apache2::mod_rewrite'
 
         capistrano_app new_resource.name do
           cookbook new_resource.cookbook
@@ -50,15 +55,10 @@ class Chef
           server_aliases new_resource.server_aliases if new_resource.server_aliases
         end
 
-        include_recipe 'php::default'
-        include_recipe 'php::module_mysql'
-        include_recipe 'composer::default'
-        include_recipe 'apache2::mod_php5'
-        include_recipe 'apache2::mod_rewrite'
 
         service 'apache2'
 
-        template '/etc/php5/apache2/php.ini' do
+        template '/etc/php/7.0/apache2/php.ini' do
           source node['php']['ini']['template']
           cookbook node['php']['ini']['cookbook']
           variables(directives: node['php']['directives'])
