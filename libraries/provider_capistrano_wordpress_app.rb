@@ -55,6 +55,11 @@ class Chef
           server_aliases new_resource.server_aliases if new_resource.server_aliases
         end
 
+        execute 'enable php7.0-cgi.conf' do
+          command 'a2enconf php7.0-cgi'
+          action :run
+          notifies :restart, 'service[apache2]', :delayed
+        end
 
         service 'apache2'
 
