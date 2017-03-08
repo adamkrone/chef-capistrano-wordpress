@@ -55,15 +55,28 @@ class Chef
           server_aliases new_resource.server_aliases if new_resource.server_aliases
         end
 
-        execute 'enable php7.0-cgi.conf' do
-          command 'a2enconf php7.0-cgi'
-          action :run
-          notifies :restart, 'service[apache2]', :delayed
-        end
-
         service 'apache2'
 
-        template '/etc/php/7.0/apache2/php.ini' do
+        # TODO: make this less gnarly and key off php version, not OS version
+        case node['platform_family']
+        when 'ubuntu'
+          case node['platform_version'].to_f
+          when 16.04
+            execute 'enable php7.0-cgi.conf' do
+              command 'a2enconf php7.0-cgi'
+              action :run
+              notifies :restart, 'service[apache2]', :delayed
+            end
+
+            php_template_path = '/etc/php/7.0/apache2/php.ini'
+          else
+            php_template_path = '/etc/php5/apache2/php.ini'
+          end
+        else
+          php_template_path = '/etc/php5/apache2/php.ini'
+        end
+
+        template php_template_path do
           source node['php']['ini']['template']
           cookbook node['php']['ini']['cookbook']
           variables(directives: node['php']['directives'])
