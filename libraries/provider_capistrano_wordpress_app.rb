@@ -39,7 +39,7 @@ class Chef
 
         include_recipe 'apache2::default'
         include_recipe 'php::default'
-        include_recipe 'php::module_mysql'
+        package 'php7.2-mysql'
         include_recipe 'composer::default'
         include_recipe 'apache2::mod_php'
         include_recipe 'apache2::mod_rewrite'
@@ -57,24 +57,7 @@ class Chef
 
         service 'apache2'
 
-        # TODO: make this less gnarly and key off php version, not OS version
-        case node['platform_family']
-        when 'ubuntu'
-          case node['platform_version'].to_f
-          when 16.04
-            execute 'enable php7.0-cgi.conf' do
-              command 'a2enconf php7.0-cgi'
-              action :run
-              notifies :restart, 'service[apache2]', :delayed
-            end
-
-            php_template_path = '/etc/php/7.0/apache2/php.ini'
-          else
-            php_template_path = '/etc/php5/apache2/php.ini'
-          end
-        else
-          php_template_path = '/etc/php5/apache2/php.ini'
-        end
+        php_template_path = '/etc/php/7.2/apache2/php.ini'
 
         template php_template_path do
           source node['php']['ini']['template']
